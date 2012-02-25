@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A1DA5D814EB2D560077A5D0 /* XVimSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1DA5D714EB2D560077A5D0 /* XVimSettings.xib */; };
+		4A3698B914F3941000D8F9B4 /* NSColorWellWithAlpha.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A3698B814F3941000D8F9B4 /* NSColorWellWithAlpha.m */; };
+		4ABB60BB14EB395D00697A1E /* XVimSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB60BA14EB395D00697A1E /* XVimSettingsManager.m */; };
+		4ABB60BF14EB397700697A1E /* XVimSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ABB60BE14EB397700697A1E /* XVimSettingsController.m */; };
 		A2420B3E14DDE59B008741DA /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B4BABE14D59F6600D817B0 /* AppKit.framework */; };
 		A24782BD14D6F56E003B6433 /* DVTSourceTextViewHook.m in Sources */ = {isa = PBXBuildFile; fileRef = A24782AF14D6F56E003B6433 /* DVTSourceTextViewHook.m */; };
 		A24782BF14D6F56E003B6433 /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = A24782B314D6F56E003B6433 /* Logger.m */; };
@@ -20,6 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A1DA5D714EB2D560077A5D0 /* XVimSettings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XVimSettings.xib; sourceTree = SOURCE_ROOT; };
+		4A3698B714F3941000D8F9B4 /* NSColorWellWithAlpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSColorWellWithAlpha.h; sourceTree = SOURCE_ROOT; };
+		4A3698B814F3941000D8F9B4 /* NSColorWellWithAlpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSColorWellWithAlpha.m; sourceTree = SOURCE_ROOT; };
+		4ABB60B914EB395D00697A1E /* XVimSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XVimSettingsManager.h; path = XVim/XVimSettingsManager.h; sourceTree = SOURCE_ROOT; };
+		4ABB60BA14EB395D00697A1E /* XVimSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XVimSettingsManager.m; path = XVim/XVimSettingsManager.m; sourceTree = SOURCE_ROOT; };
+		4ABB60BD14EB397700697A1E /* XVimSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XVimSettingsController.h; sourceTree = SOURCE_ROOT; };
+		4ABB60BE14EB397700697A1E /* XVimSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XVimSettingsController.m; sourceTree = SOURCE_ROOT; };
 		A234821814E7E26A003E0FF3 /* XVim.xcplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XVim.xcplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		A24782AE14D6F56E003B6433 /* DVTSourceTextViewHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVTSourceTextViewHook.h; path = XVim/DVTSourceTextViewHook.h; sourceTree = SOURCE_ROOT; };
 		A24782AF14D6F56E003B6433 /* DVTSourceTextViewHook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVTSourceTextViewHook.m; path = XVim/DVTSourceTextViewHook.m; sourceTree = SOURCE_ROOT; };
@@ -101,6 +112,13 @@
 				A2A8A4FE14E41C66002EA6C8 /* XVimCommandLine.h */,
 				A2A8A4FF14E41C66002EA6C8 /* XVimCommandLine.m */,
 				A2B4BAC214D59F6600D817B0 /* Supporting Files */,
+				4A1DA5D714EB2D560077A5D0 /* XVimSettings.xib */,
+				4ABB60B914EB395D00697A1E /* XVimSettingsManager.h */,
+				4ABB60BA14EB395D00697A1E /* XVimSettingsManager.m */,
+				4ABB60BD14EB397700697A1E /* XVimSettingsController.h */,
+				4ABB60BE14EB397700697A1E /* XVimSettingsController.m */,
+				4A3698B714F3941000D8F9B4 /* NSColorWellWithAlpha.h */,
+				4A3698B814F3941000D8F9B4 /* NSColorWellWithAlpha.m */,
 			);
 			name = XVim;
 			path = XVim_lite2;
@@ -185,6 +203,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A24782C614D6F6DC003B6433 /* InfoPlist.strings in Resources */,
+				4A1DA5D814EB2D560077A5D0 /* XVimSettings.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +221,9 @@
 				A2A8A50014E41C66002EA6C8 /* XVimCommandLine.m in Sources */,
 				A2C4E79814E7F35300751199 /* Hooker.m in Sources */,
 				A2C4E79C14E7F36B00751199 /* XVimEvaluator.m in Sources */,
+				4ABB60BB14EB395D00697A1E /* XVimSettingsManager.m in Sources */,
+				4ABB60BF14EB397700697A1E /* XVimSettingsController.m in Sources */,
+				4A3698B914F3941000D8F9B4 /* NSColorWellWithAlpha.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

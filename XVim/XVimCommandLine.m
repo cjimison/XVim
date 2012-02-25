@@ -10,6 +10,7 @@
 #import "XVimCommandField.h"
 #import "Logger.h"
 #import "XVim.h"
+#import "XVimSettingsManager.h"
 
 #define STATUS_BAR_HEIGHT 18
 
@@ -24,7 +25,7 @@
         
         _command = [[XVimCommandField alloc] initWithFrame:NSMakeRect(0, 0, 0, STATUS_BAR_HEIGHT)];
         _command.delegate = self;
-        [_command setBackgroundColor:[NSColor colorWithSRGBRed:0 green:0 blue:0 alpha:0.0]];
+        [_command setBackgroundColor:[[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_Background"]];
         _command.stringValue = @"";
         [_command setEditable:NO];
         [_command setBordered:NO];
@@ -37,7 +38,7 @@
         [paragraph setAlignment:NSRightTextAlignment];
         [paragraph setTailIndent:-10.0];
         _status = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 0, 0, STATUS_BAR_HEIGHT)];
-        [_status setBackgroundColor:[NSColor colorWithSRGBRed:0 green:0 blue:0 alpha:0.0]];
+        [_status setBackgroundColor:[[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_Status_Background"]];
         _status.stringValue = MODE_STRINGS[((XVim*)xvim).mode]; 
         [_status setAlignment:NSRightTextAlignment];
         [_status setEditable:NO];
@@ -100,7 +101,7 @@
 }
 
 - (void)viewWillDraw{
-    [self layoutDVTSourceTextScrollViewSubviews:[self superview]];
+    [self layoutDVTSourceTextScrollViewSubviews:(NSScrollView*)[self superview]];
     [super viewWillDraw];
 }
 
@@ -108,13 +109,13 @@
     [_status setStringValue:[xvim modeName]];
     NSColor* color;
     if( [_command.stringValue isEqualToString:@""] ){
-        color = [NSColor colorWithSRGBRed:0 green:0.0 blue:0.0 alpha:0.0];
-        [_status setTextColor:[NSColor blackColor]];
+        color = [[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_String_Empty"];
+        [_status setTextColor:[[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_String_Empty_Status_Color"]];
 
     }else{
-        color = [NSColor colorWithSRGBRed:0 green:0.0 blue:0.0 alpha:0.6];
-        [_command setTextColor:[NSColor whiteColor]];
-        [_status setTextColor:[NSColor whiteColor]];
+        color = [[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_String_Non_Empty"];
+        [_command setTextColor:[[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_String_Non_Empty_Status_Color"]];
+        [_status setTextColor:[[[XVimSettingsManager instance] colors] objectForKey:@"CommandLine_String_Non_Empty_Text_Color"]];
     }
     [color set];
     NSBezierPath* path= [NSBezierPath bezierPathWithRect:dirtyRect];

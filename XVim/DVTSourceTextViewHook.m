@@ -10,6 +10,8 @@
 #import "Logger.h"
 #import "XVimCommandLine.h"
 #import "XVim.h"
+#import "XVimSettingsManager.h"
+
 @implementation DVTSourceTextViewHook
 
 static NSMutableArray* queue;
@@ -96,7 +98,8 @@ static NSMutableArray* queue;
     }
     else{
         if(flag){
-            color = [NSColor colorWithDeviceRed:0.0 green:0.0 blue:0.0 alpha:0.5];
+            color = [[[XVimSettingsManager instance] colors] objectForKey:@"DVTSourceTextView_color"];
+            NSCompositingOperation composit =  NSCompositePlusLighter;//[[[[XVimSettingsManager instance] colors] objectForKey:@"cursor_composite"] unsignedIntegerValue];
             NSPoint aPoint=NSMakePoint( rect.origin.x,rect.origin.y+rect.size.height/2);
             int glyphIndex = [[self layoutManager] glyphIndexForPoint:aPoint inTextContainer:[self textContainer]];
             NSRect glyphRect = [[self layoutManager] boundingRectForGlyphRange:NSMakeRange(glyphIndex, 1)  inTextContainer:[self textContainer]];
@@ -105,7 +108,7 @@ static NSMutableArray* queue;
             rect.size.width =rect.size.height/2;
             if(glyphRect.size.width > 0 && glyphRect.size.width < rect.size.width) 
                 rect.size.width=glyphRect.size.width;
-            NSRectFillUsingOperation( rect, NSCompositePlusDarker);
+            NSRectFillUsingOperation( rect, composit);
         } else {
             [self setNeedsDisplayInRect:[self visibleRect] avoidAdditionalLayout:NO];
         }

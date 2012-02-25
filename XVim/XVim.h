@@ -32,12 +32,15 @@ static NSString* MODE_STRINGS[] = {@"NORMAL", @"CMDLINE", @"INSERT",
      BOOL _searchBackword;
      NSUInteger _numericArgument;
      XVimEvaluator* _currentEvaluator;
+     
 }
 
 @property NSInteger tag;
 @property NSInteger mode;
+@property BOOL settingShowing;
 @property(retain) XVimCommandLine* cmdLine;
 @property(retain) NSTextView* sourceView;
+@property(retain) NSWindow* sheet;
 
 
 
@@ -51,4 +54,6 @@ static NSString* MODE_STRINGS[] = {@"NORMAL", @"CMDLINE", @"INSERT",
 - (void)searchBackward;
 - (NSString*)modeName;
 - (BOOL)handleKeyEvent:(NSEvent*)event;
+- (BOOL)isWindowLoaded;
+- (void)setWindowLoaded:(BOOL)val;
 @end

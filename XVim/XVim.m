@@ -31,7 +31,7 @@
 #import "XVimEvaluator.h"
 
 @implementation XVim
-@synthesize tag,mode,cmdLine,sourceView;
+@synthesize tag,mode,cmdLine,sourceView,settingShowing,sheet;
 
 + (void) load { 
     // Entry Point of the Plugin.
@@ -118,9 +118,25 @@
     return YES;
 }
 
+- (void)authSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+    /*
+    if (returnCode == NSOKButton) {
+        // Resume the URL load
+        [self startTimer];
+        if (useCFNetworkLoader) {
+            [cfnetworkLoader resumeWithCredentials];
+        } else {
+            [nsurlLoader resumeWithCredentials];
+        }
+    }
+    */
+    [sheet orderOut: self];
+    [[[NSApplication sharedApplication] mainWindow] display];
+}
+
 - (void)commandDetermined:(NSString*)command{
     NSString* c = [command stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSTextView* srcView = [self superview]; // DVTTextSourceView
+    NSTextView* srcView = (NSTextView*)[self superview]; // DVTTextSourceView
     TRACE_LOG(@"command : %@", c);
     if( [c length] == 0 ){
         // Something wroing
@@ -166,7 +182,20 @@
             }
         }
         else if( [ex_command hasPrefix:@"!"] ){
-            
+      
+        }
+        else if([ex_command isEqualToString:@"xvim"]){
+            if(![self settingShowing])
+            {
+                [NSBundle loadNibNamed:@"XVimSettings" owner:self];
+                [[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
+                [NSColor setIgnoresAlpha:NO];
+                [[NSApplication sharedApplication]  beginSheet:sheet 
+                                                    modalForWindow:[[NSApplication sharedApplication] mainWindow] 
+                                                    modalDelegate:self
+                                                    didEndSelector:@selector(authSheetDidEnd:returnCode:contextInfo:)
+                                                    contextInfo:nil];
+            }
         }
     }
     else if( [c characterAtIndex:0] == '/' ){
