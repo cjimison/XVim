@@ -118,7 +118,7 @@
     return YES;
 }
 
-- (void)authSheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
+- (void)authSheetDidEnd:(NSWindow *)theSheet returnCode:(int)returnCode contextInfo:(void *)contextInfo {
     /*
     if (returnCode == NSOKButton) {
         // Resume the URL load
@@ -130,7 +130,7 @@
         }
     }
     */
-    [sheet orderOut: self];
+    [theSheet orderOut: self];
     [[[NSApplication sharedApplication] mainWindow] display];
 }
 
@@ -220,7 +220,7 @@
 }
 
 - (void)searchForward{
-    NSTextView* srcView = [self superview];
+    NSTextView* srcView = (NSTextView*)[self superview];
     // get current insert position
     NSRange r = [srcView selectedRange];
     
@@ -239,7 +239,7 @@
 
 
 - (void)searchBackward{
-    NSTextView* srcView = [self superview];
+    NSTextView* srcView = (NSTextView*)[self superview];
     // get current insert position
     NSRange r = [srcView selectedRange];
     
@@ -287,6 +287,10 @@
     [[self cmdLine] setFocusOnCommandWithFirstLetter:first];
 }
 
+- (BOOL)isWindowLoaded
+{
+    return YES;
+}
 
 - (NSString*)modeName{
     return MODE_STRINGS[self.mode];
